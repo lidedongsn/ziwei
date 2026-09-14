@@ -1,0 +1,25 @@
+# Dependencies and generated artifacts
+node_modules/
+/dist/
+/.ziwei-build-*/
+/coverage/
+*.tsbuildinfo
+
+# Local environment and extension signing keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crx
+
+# Editor, operating system and debug files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.log

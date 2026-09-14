@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "紫微 · 开发工具箱",
+  "version": "1.0.0",
+  "description": "本地 JSON 格式化、压缩、校验、树形浏览和文件导入导出，保留数字精度。",
+  "permissions": [
+    "contextMenus",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "src/extension/background.js"
+  },
+  "action": {
+    "default_title": "打开紫微"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}

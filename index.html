@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>紫微 · JSON 格式化</title>
+  <link rel="stylesheet" href="src/styles/index.css">
+  <script type="module" src="src/main.js">
+</script>
+</head>
+<body>
+  <header class="app-bar">
+    <a class="brand" href="index.html">
+<span class="logo">{ }</span>
+<span>紫微</span>
+</a>
+    <div class="toolbar" role="toolbar" aria-label="JSON 工具栏">
+      <div class="actions">
+<button class="primary" id="format">格式化 <kbd>⌘ / Ctrl ↵</kbd>
+</button>
+<button id="minify">压缩</button>
+<button id="validate">校验</button>
+<span class="separator">
+</span>
+<button id="escape">转义</button>
+<button id="unescape">去转义</button>
+</div>
+      <div class="options">
+<label>缩进 <select id="indent">
+<option value="2">2 空格</option>
+<option value="4">4 空格</option>
+<option value="tab">Tab</option>
+</select>
+</label>
+<label>
+<input id="sort" type="checkbox"> 按键排序</label>
+</div>
+      <span class="local">
+<i>
+</i> 本地处理 · 数据不上传</span>
+      <button id="theme" title="切换明暗主题">◐ <span>切换主题</span>
+</button>
+    </div>
+  </header>
+  <main>
+    <section class="workspace" aria-label="JSON 工作台">
+      <div class="editors">
+        <section class="pane">
+<div class="pane-header">
+<h2>
+<span class="dot">
+</span> 输入 <small>INPUT</small>
+</h2>
+<div>
+<button id="import">导入文件</button>
+<button id="clear">清空</button>
+</div>
+</div>
+<div class="input-wrap">
+<textarea id="input" aria-label="输入 JSON" spellcheck="false" placeholder='在这里粘贴 JSON，或拖入 .json 文件…'>
+</textarea>
+</div>
+<div class="pane-footer">
+<span id="input-meta">0 字符</span>
+<span>JSON · UTF-8</span>
+</div>
+</section>
+        <section class="pane output-pane">
+<div class="pane-header">
+<div class="tabs" role="group" aria-label="输出视图">
+<button id="tree-tab" class="active" aria-pressed="true">树形</button>
+<button id="code-tab" aria-pressed="false">元数据</button>
+</div>
+<div class="result-actions">
+<div class="searchbar">
+<input id="search" aria-label="搜索输出" placeholder="搜索键或值…">
+<span id="matches">
+</span>
+<button id="collapse" hidden>全部折叠</button>
+<button id="expand" hidden>全部展开</button>
+</div>
+<button id="copy" disabled>复制</button>
+<button id="download" disabled>下载 ↓</button>
+</div>
+</div>
+<div id="output" tabindex="0" aria-label="格式化结果">
+<div class="empty">
+<div>{ }</div>
+<h3>清晰，从格式化开始</h3>
+<p>输入或粘贴 JSON，自动显示格式化结果</p>
+</div>
+</div>
+<div class="pane-footer">
+<span id="output-meta">等待输入</span>
+<span id="view-label">TREE VIEW</span>
+</div>
+</section>
+      </div>
+      <div id="status" role="status">
+<span>●</span> 准备就绪<span class="status-note">保留大整数与数字精度</span>
+</div>
+    </section>
+    <footer>
+<span>紫微 <span class="version">v1.0</span>
+</span>
+<span>自动格式化已开启 · 支持拖入文件</span>
+</footer>
+  </main>
+  <input id="file" type="file" accept=".json,.txt,application/json,text/plain" hidden>
+</body>
+</html>
