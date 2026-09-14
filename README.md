@@ -62,12 +62,6 @@ npm run build  # 检查 + 测试 + 生成 dist/ziwei
 
 `npm run dev` 仅绑定本机地址，可通过 `PORT=8081 npm run dev` 更换端口。它不自动刷新页面。扩展按钮和右键菜单需在 Chrome 加载扩展后验证。
 
-也可沿用 pyenv 预览：
-
-```sh
-pyenv exec python -m http.server 8080
-```
-
 新增工具的接入方式和手工验证步骤见 [开发说明](docs/development.md)。
 
 扩展配置依据：[Chrome Manifest 文档](https://developer.chrome.com/docs/extensions/mv3/manifest)、[chrome.action 文档](https://developer.chrome.com/docs/extensions/reference/api/action)。权限仅包括右键菜单 `contextMenus` 和临时数据传递 `storage`。
