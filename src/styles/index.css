@@ -786,6 +786,45 @@ body.dark {
   gap: 6px;
 }
 
+.app-bar img.logo {
+  background: transparent;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+#minify {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--control-text);
+}
+
+.switch-track {
+  width: 28px;
+  height: 16px;
+  padding: 2px;
+  border-radius: 10px;
+  background: var(--control-border);
+}
+
+.switch-track::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--panel);
+  transition: transform .15s;
+}
+
+#minify[aria-checked="true"] .switch-track {
+  background: var(--accent);
+}
+
+#minify[aria-checked="true"] .switch-track::after {
+  transform: translateX(12px);
+}
+
 html {
   height: 100%;
 }
@@ -931,4 +970,3 @@ footer {
   }
 
 }
-

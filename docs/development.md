@@ -20,6 +20,8 @@ JSON 使用原始标量 token，不能改为直接解析成 JavaScript 数字后
 
 ## 检查与交付
 
+图标原图位于 `assets/icon-source.png`；运行时使用 `src/assets/icons/` 中的 16、32、48、128 像素透明 PNG。更换图标时同时更新各尺寸，保持原始比例。`manifest.json` 配置扩展图标，`index.html` 配置页面标识和标签页图标。构建只包含运行时尺寸，不包含原图。
+
 提交前运行 `npm run build`，检查、测试失败时不会继续生成新产物。产物位于 `dist/ziwei`，可在扩展管理页直接加载。不要手动修改生成目录。
 
 涉及视图的修改还需在 Chrome 手工检查：

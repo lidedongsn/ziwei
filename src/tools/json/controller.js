@@ -29,7 +29,7 @@ function changed() {
   $('matches').textContent = '';
   status('准备就绪');
   if (hasInput && !composing) {
-    formatTimer = setTimeout(() => process('format', false), 300);
+    formatTimer = setTimeout(() => process(mode, false), 300);
   }
 }
 function read() {
@@ -37,7 +37,7 @@ function read() {
   if (new Blob([source]).size > MAX_SIZE) throw new Error('文件过大，请使用不超过 2 MB 的 JSON');
   return parse(source);
 }
-function process(nextMode = 'format', locateError = true) {
+function process(nextMode = mode, locateError = true) {
   clearTimeout(formatTimer);
   try {
     root = read(); mode = nextMode;
@@ -78,8 +78,20 @@ $('output').addEventListener('keydown', (event) => { if (event.key === 'Escape')
 $('input').addEventListener('input', changed);
 $('input').addEventListener('compositionstart', () => { composing = true; clearTimeout(formatTimer); });
 $('input').addEventListener('compositionend', () => { composing = false; changed(); });
-$('format').onclick = () => process();
-$('minify').onclick = () => process('minify');
+let viewBeforeMinify = view;
+$('minify').onclick = () => {
+  const enabled = mode !== 'minify';
+  mode = enabled ? 'minify' : 'format';
+  $('minify').setAttribute('aria-checked', String(enabled));
+  $('indent').disabled = enabled;
+  if (enabled) {
+    viewBeforeMinify = view;
+    selectView('code');
+  } else if (view === 'code') {
+    selectView(viewBeforeMinify);
+  }
+  if ($('input').value.trim() && !composing) process(mode, false);
+};
 $('validate').onclick = () => { try { read(); status('校验通过 · JSON 语法有效'); } catch (error) { status(error.message, true); if (Number.isInteger(error.position)) { $('input').focus(); $('input').setSelectionRange(error.position, error.position + 1); } } };
 $('clear').onclick = () => { setInput(''); $('input').focus(); };
 $('indent').onchange = $('sort').onchange = () => { if (root) process(mode); };

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>紫微 · JSON 格式化</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="src/assets/icons/icon-32.png">
   <link rel="stylesheet" href="src/styles/index.css">
   <script type="module" src="src/main.js">
 </script>
@@ -11,14 +12,12 @@
 <body>
   <header class="app-bar">
     <a class="brand" href="index.html">
-<span class="logo">{ }</span>
+<img class="logo" src="src/assets/icons/icon-48.png" width="28" height="28" alt="">
 <span>紫微</span>
 </a>
     <div class="toolbar" role="toolbar" aria-label="JSON 工具栏">
       <div class="actions">
-<button class="primary" id="format">格式化 <kbd>⌘ / Ctrl ↵</kbd>
-</button>
-<button id="minify">压缩</button>
+<button id="minify" role="switch" aria-checked="false" title="开启后输出单行 JSON，关闭后恢复格式化">压缩 <span class="switch-track" aria-hidden="true"></span></button>
 <button id="validate">校验</button>
 <span class="separator">
 </span>
