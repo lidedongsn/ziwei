@@ -1,6 +1,5 @@
 import { parse, stringify } from './parser.js';
 import { createJsonView } from './view.js';
-import { initTheme } from '../../shared/theme.js';
 
 const $ = (id) => document.getElementById(id);
 let root = null, result = '', view = 'tree', mode = 'format';
@@ -141,15 +140,15 @@ async function importFile(file) {
 }
 $('import').onclick = () => $('file').click();
 $('file').onchange = async () => { await importFile($('file').files[0]); $('file').value = ''; };
-document.addEventListener('dragover', (event) => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); });
-document.addEventListener('drop', (event) => {
+$('json-workspace').addEventListener('dragover', (event) => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); });
+$('json-workspace').addEventListener('drop', (event) => {
   if (!event.dataTransfer.files.length) return;
   event.preventDefault(); importFile(event.dataTransfer.files[0]);
 });
 document.addEventListener('keydown', (event) => {
+  if ($('json-workspace').hidden) return;
   if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') { event.preventDefault(); process(); }
 });
-initTheme($);
 // Context-menu data is temporary and removed immediately after this page receives it.
 if (location.hash && globalThis.chrome?.storage?.session) {
   const id = location.hash.slice(1);

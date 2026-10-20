@@ -970,3 +970,78 @@ footer {
   }
 
 }
+
+/* Shared tool navigation and file-size workbench. */
+[hidden] { display: none !important; }
+.app-bar { background: var(--bg); }
+.tool-nav {
+  display: flex;
+  align-self: stretch;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-top: 8px;
+  margin-bottom: -1px;
+  z-index: 1;
+}
+.app-bar .tool-nav button {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-bottom-color: var(--line);
+  border-radius: 8px 8px 0 0;
+  color: var(--muted);
+}
+.app-bar .tool-nav button:hover {
+  background: var(--soft);
+  color: var(--text);
+}
+.app-bar .tool-nav button[aria-pressed="true"] {
+  color: var(--accent);
+  background: var(--panel);
+  border-color: var(--line);
+  border-bottom-color: var(--panel);
+  font-weight: 600;
+}
+/* The selected tab and its workspace share one continuous surface. */
+main { padding: 0; }
+main > .workspace {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+main > footer { padding: 7px 16px; border-top: 1px solid var(--line); }
+#json-toolbar { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px 20px; }
+#json-toolbar .options { padding-top: 0; }
+.size-content { flex: 1; min-height: 0; overflow: auto; padding: 28px; }
+.size-help { max-width: 960px; margin: 0 auto 20px; color: var(--muted); line-height: 1.7; font-size: 12px; }
+.size-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; max-width: 400px; margin: 0 auto; }
+.size-field { display: flex; align-items: center; gap: 12px; }
+.size-field span { width: 36px; flex-shrink: 0; color: var(--muted); font-size: 12px; }
+.size-field input { width: 100%; min-width: 0; height: 42px; border: 1px solid var(--control-border); border-radius: 6px; background: var(--panel); color: var(--text); padding: 10px 12px; font: 14px "SFMono-Regular", Consolas, monospace; }
+.size-field input::placeholder { color: var(--muted); }
+.size-field:focus-within span { color: var(--accent); }
+.size-field input[aria-invalid="true"] { border-color: var(--error); }
+.tool-status { padding: 9px 12px; border-top: 1px solid var(--line); color: var(--accent); font-size: 11px; flex-shrink: 0; }
+.tool-status.error { color: var(--error); }
+.app-bar > .local { white-space: nowrap; }
+.app-bar > #theme { flex-shrink: 0; }
+@media (max-width: 1000px) { .app-bar > .local { display: none; } .app-bar > #theme { margin-left: auto; } }
+@media (max-width: 640px) {
+  .size-content { padding: 20px 14px; overflow: visible; }
+  .size-fields { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .app-bar { gap: 8px; }
+  .app-bar .brand { gap: 6px; }
+  .tool-nav { gap: 2px; }
+  .app-bar .tool-nav button { padding: 7px 6px; font-size: 12px; gap: 5px; }
+  #json-toolbar .options { flex-wrap: wrap; gap: 12px; }
+}
+
+#base64-workspace textarea[aria-invalid="true"] { box-shadow: inset 0 0 0 1px var(--error); }
+#base64-output { overflow-wrap: anywhere; }

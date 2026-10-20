@@ -15,7 +15,17 @@
 <img class="logo" src="src/assets/icons/icon-48.png" width="28" height="28" alt="">
 <span>紫微</span>
 </a>
-    <div class="toolbar" role="toolbar" aria-label="JSON 工具栏">
+    <nav class="tool-nav" aria-label="工具导航">
+      <button data-tool="json" aria-pressed="true" aria-controls="json-workspace">{ } <span>JSON 格式化</span></button>
+      <button data-tool="base64" aria-pressed="false" aria-controls="base64-workspace"><span>Base64 编解码</span></button>
+      <button data-tool="size" aria-pressed="false" aria-controls="size-workspace">⇄ <span>大小转换器</span></button>
+    </nav>
+    <span class="local"><i></i> 本地处理 · 数据不上传</span>
+    <button id="theme" title="切换明暗主题">◐ <span>切换主题</span></button>
+  </header>
+  <main>
+    <section id="json-workspace" class="workspace" aria-label="JSON 工作台">
+    <div id="json-toolbar" class="toolbar" role="toolbar" aria-label="JSON 工具栏">
       <div class="actions">
 <button id="minify" role="switch" aria-checked="false" title="开启后输出单行 JSON，关闭后恢复格式化">压缩 <span class="switch-track" aria-hidden="true"></span></button>
 <button id="validate">校验</button>
@@ -34,15 +44,7 @@
 <label>
 <input id="sort" type="checkbox"> 按键排序</label>
 </div>
-      <span class="local">
-<i>
-</i> 本地处理 · 数据不上传</span>
-      <button id="theme" title="切换明暗主题">◐ <span>切换主题</span>
-</button>
     </div>
-  </header>
-  <main>
-    <section class="workspace" aria-label="JSON 工作台">
       <div class="editors">
         <section class="pane">
 <div class="pane-header">
@@ -99,10 +101,42 @@
 <span>●</span> 准备就绪<span class="status-note">保留大整数与数字精度</span>
 </div>
     </section>
+    <section id="size-workspace" class="workspace" aria-label="大小转换工作台" hidden>
+      <div class="pane-header">
+        <h2><span class="dot"></span>大小转换器 <small>FILE SIZE</small></h2>
+        <button id="size-clear">清空</button>
+      </div>
+      <div class="size-content">
+        <p id="size-help" class="size-help">填写任意一栏，其他单位自动换算。每级按 1024 换算，1 KB = 1024 B。</p>
+        <div id="size-fields" class="size-fields"></div>
+      </div>
+      <div id="size-status" class="tool-status" role="status">准备就绪</div>
+    </section>
+    <section id="base64-workspace" class="workspace" aria-label="Base64 工作台" hidden>
+      <div class="editors">
+        <section class="pane">
+          <div class="pane-header">
+            <h2><span class="dot"></span>原文 <small>TEXT</small></h2>
+            <div><button id="base64-copy-text" disabled>复制</button><button id="base64-clear">清空全部</button></div>
+          </div>
+          <div class="input-wrap"><textarea id="base64-input" aria-label="原文" spellcheck="false" placeholder="输入原文，右侧自动编码为 Base64…"></textarea></div>
+          <div class="pane-footer"><span id="base64-input-meta">0 字符</span><span>UTF-8</span></div>
+        </section>
+        <section class="pane">
+          <div class="pane-header">
+            <h2><span class="dot"></span>Base64 <small>BASE64</small></h2>
+            <button id="base64-copy" disabled>复制</button>
+          </div>
+          <div class="input-wrap"><textarea id="base64-output" aria-label="Base64" spellcheck="false" placeholder="输入 Base64，左侧自动解码为原文…"></textarea></div>
+          <div class="pane-footer"><span id="base64-output-meta">0 字符</span><span>BASE64</span></div>
+        </section>
+      </div>
+      <div id="base64-status" class="tool-status" role="status">在任意一侧输入，另一侧自动转换</div>
+    </section>
     <footer>
 <span>紫微 <span class="version">v1.0</span>
 </span>
-<span>自动格式化已开启 · 支持拖入文件</span>
+<span id="tool-hint">自动格式化已开启 · 支持拖入文件</span>
 </footer>
   </main>
   <input id="file" type="file" accept=".json,.txt,application/json,text/plain" hidden>
